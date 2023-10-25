@@ -49,15 +49,17 @@ public class StreamDetailTest {
         LongAdder longAdder = new LongAdder();
         orders.stream().forEach(order ->
                 order.getOrderItemList().forEach(orderItem -> longAdder.add(orderItem.getProductQuantity())));
+        System.out.println(longAdder.longValue());
+        System.out.println(longAdder);
         //使用两次mapToLong+sum方法实现
         assertThat(longAdder.longValue(), is(orders.stream().mapToLong(order ->
                 order.getOrderItemList().stream()
                         .mapToLong(OrderItem::getProductQuantity).sum()).sum()));
-
         //把IntStream通过转换Stream<Project>
         System.out.println(IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> new Product((long) i, "product" + i, i * 100.0))
                 .collect(toList()));
+
     }
 
     @Test
