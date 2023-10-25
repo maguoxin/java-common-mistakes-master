@@ -121,7 +121,7 @@ public class CoolStreamTest {
                     .forEach(System.out::println); //打印所有的行
         }
     }
-
+    // 斐波那契测试
     @Test
     public void fibonacci() {
         Stream.iterate(new BigInteger[]{BigInteger.ONE, BigInteger.ONE},

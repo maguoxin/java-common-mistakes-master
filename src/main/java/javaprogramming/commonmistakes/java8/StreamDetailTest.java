@@ -49,7 +49,6 @@ public class StreamDetailTest {
         LongAdder longAdder = new LongAdder();
         orders.stream().forEach(order ->
                 order.getOrderItemList().forEach(orderItem -> longAdder.add(orderItem.getProductQuantity())));
-
         //使用两次mapToLong+sum方法实现
         assertThat(longAdder.longValue(), is(orders.stream().mapToLong(order ->
                 order.getOrderItemList().stream()
@@ -262,7 +261,6 @@ public class StreamDetailTest {
         assertThat(Stream.of('a', 'b', 'c', 'c', 'c', 'd').collect(new MostPopularCollector<>()).get(), is('c'));
         assertThat(Stream.concat(Stream.concat(IntStream.rangeClosed(1, 1000).boxed(), IntStream.rangeClosed(1, 1000).boxed()), Stream.of(2))
                 .parallel().collect(new MostPopularCollector<>()).get(), is(2));
-
     }
 
     @Test
@@ -415,17 +413,17 @@ public class StreamDetailTest {
             add("2");
         }};
 
-        list.stream()
+        System.out.println(list.stream()
                 .filter(s -> "2".equals(s))
                 .findFirst()
-                .get();
+                .get());
 
         // 防止空指针
-        list.stream()
+        System.out.println(list.stream()
                 .filter(s -> "2".equals(s))
                 .findFirst()
                 // orElse 表示如果 findFirst 返回 null 的话，就返回 orElse 里的内容
-                .orElse("3");
+                .orElse("3"));
 
         Optional<String> str = list.stream()
                 .filter(s -> "2".equals(s))
